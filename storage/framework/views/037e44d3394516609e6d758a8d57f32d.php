@@ -14,7 +14,7 @@
                 <?php echo e('Bacaan'); ?>
 
             </h2>
-            <a href="<?php echo e(route('bacaan.create')); ?>" class="bg-blue-500 text-black px-4 py-2 rounded-md">ADD</a>
+            <a href="<?php echo e(route('bacaan.create')); ?>" class="bg-blue-500 text-white px-4 py-2 rounded-md">ADD</a>
         </div>
      <?php $__env->endSlot(); ?>
 

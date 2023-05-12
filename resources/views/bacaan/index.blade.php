@@ -5,7 +5,7 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ 'Bacaan' }}
             </h2>
-            <a href="{{ route('bacaan.create') }}" class="bg-blue-500 text-black px-4 py-2 rounded-md">ADD</a>
+            <a href="{{ route('bacaan.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded-md">ADD</a>
         </div>
     </x-slot>
 
