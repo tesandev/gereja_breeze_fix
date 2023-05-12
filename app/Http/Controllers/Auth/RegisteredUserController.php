@@ -18,9 +18,12 @@ class RegisteredUserController extends Controller
     /**
      * Display the registration view.
      */
-    public function create(): View
+
+     // add :View after name function create() to redirect to register
+    public function create()
     {
-        return view('auth.register');
+        //return view('auth.register');
+        return redirect()->route('login');
     }
 
     /**

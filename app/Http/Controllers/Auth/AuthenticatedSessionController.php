@@ -33,32 +33,6 @@ class AuthenticatedSessionController extends Controller
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
-    public function login(LoginRequest $request):RedirectResponse
-    {
-        $cek = DB::table('users')
-            ->where('isAdmin', '=', 1)
-            ->where('email','=',$request->email)
-            ->first();
-        if ($cek) {
-            if (password_verify($request->password,$cek->password)) {
-                $request->session()->regenerate();
-                return redirect()->intended(RouteServiceProvider::HOME);
-            }else{
-                $request->session()->invalidate();
-
-                $request->session()->regenerateToken();
-
-                return redirect('/');
-            }
-        }else {
-            $request->session()->invalidate();
-
-            $request->session()->regenerateToken();
-
-            return redirect('/');
-        }
-    }
-
     /**
      * Destroy an authenticated session.
      */
