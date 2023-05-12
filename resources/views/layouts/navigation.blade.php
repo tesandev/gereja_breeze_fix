@@ -19,6 +19,9 @@
                 <x-nav-link :href="route('bacaan.index')" :active="request()->routeIs('bacaan.index')">
                         {{'Bacaan' }}
                 </x-nav-link>
+                <x-nav-link :href="route('tataibadah.index')" :active="request()->routeIs('tataibadah.index')">
+                        {{'Tata Ibadah' }}
+                </x-nav-link>
             </div>
 
             <!-- Settings Dropdown -->
@@ -75,6 +78,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('bacaan.index')" :active="request()->routeIs('bacaan.index')">
                 {{ 'Bacaan' }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('tataibadah.index')" :active="request()->routeIs('tataibadah.index')">
+                {{ 'Tata Ibadah' }}
             </x-responsive-nav-link>
         </div>
 

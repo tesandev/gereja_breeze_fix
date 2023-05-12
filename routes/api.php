@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controller\UsermobileController;
+use App\Http\Controller\TataibadahController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,7 @@ Route::post('/login','UsermobileController@login');
 Route::post('/register','UsermobileController@register');
 Route::post('/usermobileUpdate','UsermobileController@userUpdate');
 Route::get('/usermobileDetail/{id}','UsermobileController@userDetail');
+
+//tataibadah mobile
+Route::get('/listtataibadah','TataibadahController@listtataibadahapi');
+Route::get('/tataibadahdetail/{id}','TataibadahController@apidetail');

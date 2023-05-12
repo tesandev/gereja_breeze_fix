@@ -49,7 +49,7 @@ class BacaanController extends Controller
         $create = Bacaan::create($validate);
 
         if ($create) {
-            session()->flash('notif.success','Post created successfully!');
+            session()->flash('notif.success','Bacaan created successfully!');
             return redirect()->route('bacaan.index');
         }
 
