@@ -9,6 +9,7 @@ use App\Http\Requests\Tataibadah\StoreRequest;
 use App\Http\Requests\Tataibadah\UpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class TataibadahController extends Controller
 {
@@ -89,12 +90,19 @@ class TataibadahController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRequest $request, string $id):RedirectResponse
+    public function update(Request $request, string $id):RedirectResponse
     {
         $tb = Tataibadah::findOrFail($id);
-        $validated = $request->validated();
+        $this->validate($request, [
+            'namaibadah' => 'required|string|min:3|max:250',
+            'contentbody' => 'required|string|min:3|max:10000',
+        ]);
 
-        $update = $tb->update($validated);
+        $update = DB::table('tataibadah')->where('id',$id)->update([
+            'namaibadah'=> $request->namaibadah,
+            'contentbody'=> $request->contentbody,
+            'updated_at' => Carbon::now()
+        ]);
         if ($update) {
             session()->flash('notif.success','Tata ibadah berhasil diupdate');
             return redirect()->route('tataibadah.index');

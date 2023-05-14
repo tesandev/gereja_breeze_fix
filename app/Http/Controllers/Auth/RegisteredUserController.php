@@ -20,10 +20,10 @@ class RegisteredUserController extends Controller
      */
 
      // add :View after name function create() to redirect to register
-    public function create()
+    public function create():View
     {
-        //return view('auth.register');
-        return redirect()->route('login');
+        return view('auth.register');
+        //return redirect()->route('login');
     }
 
     /**

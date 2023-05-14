@@ -34,13 +34,19 @@
                         <div class="flex items-center gap-4">
                             <x-primary-button>{{ __('Save') }}</x-primary-button>
                         </div>
+                        <div class="flex items-center gap-4">
+                            <a href="{{ route('tataibadah.index') }}" class="bg-blue-500 text-white px-4 py-2 rounded-md">BACK</a>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.21.0/basic/ckeditor.js"></script>
     <script>
-        CKEDITOR.replace( 'contentbody' );
+        CKEDITOR.replace('contentbody',{
+            height: 150,
+            removeButtons: 'PasteFromWord'
+        });
     </script>
 </x-app-layout>

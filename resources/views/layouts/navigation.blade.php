@@ -22,6 +22,18 @@
                 <x-nav-link :href="route('tataibadah.index')" :active="request()->routeIs('tataibadah.index')">
                         {{'Tata Ibadah' }}
                 </x-nav-link>
+                <x-nav-link :href="route('pengumuman.index')" :active="request()->routeIs('pengumuman.index')">
+                        {{'Pengumuman' }}
+                </x-nav-link>
+                <x-nav-link :href="route('jadwalkegiatan.index')" :active="request()->routeIs('jadwalkegiatan.index')">
+                        {{'Jadwal Kegiatan' }}
+                </x-nav-link>
+                <x-nav-link :href="route('renungan.index')" :active="request()->routeIs('renungan.index')">
+                        {{'Renungan' }}
+                </x-nav-link>
+                <x-nav-link :href="route('petugas.index')" :active="request()->routeIs('petugas.index')">
+                        {{'Petugas' }}
+                </x-nav-link>
             </div>
 
             <!-- Settings Dropdown -->

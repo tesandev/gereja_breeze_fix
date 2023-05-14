@@ -3,6 +3,10 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BacaanController;
 use App\Http\Controllers\TataibadahController;
+use App\Http\Controllers\PengumumanController;
+use App\Http\Controllers\JadwalkegiatanController;
+use App\Http\Controllers\RenunganController;
+use App\Http\Controllers\PetugasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +34,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('bacaan',BacaanController::class);
     Route::resource('tataibadah',TataibadahController::class);
+    Route::resource('pengumuman',PengumumanController::class);
+    Route::resource('jadwalkegiatan',JadwalkegiatanController::class);
+    Route::resource('renungan',RenunganController::class);
+    Route::resource('petugas',PetugasController::class);
 });
 
 require __DIR__.'/auth.php';

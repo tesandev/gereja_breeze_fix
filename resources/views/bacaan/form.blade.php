@@ -52,6 +52,9 @@
                         <div class="flex items-center gap-4">
                             <x-primary-button>{{ __('Save') }}</x-primary-button>
                         </div>
+                        <div class="flex items-center gap-4">
+                            <a href="{{ route('bacaan.index') }}" class="bg-blue-500 text-white px-4 py-2 rounded-md">BACK</a>
+                        </div>
                     </form>
                 </div>
             </div>

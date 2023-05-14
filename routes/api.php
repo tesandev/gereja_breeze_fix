@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controller\UsermobileController;
 use App\Http\Controller\TataibadahController;
+use App\Http\Controller\BacaanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,11 @@ Route::get('/usermobileDetail/{id}','UsermobileController@userDetail');
 //tataibadah mobile
 Route::get('/listtataibadah','TataibadahController@listtataibadahapi');
 Route::get('/tataibadahdetail/{id}','TataibadahController@apidetail');
+
+//bacaan mobile
+Route::get('/listbacaan','BacaanController@listbacaan');
+Route::get('/bacaandetail/{id}','BacaanController@bacaandetail');
+
+//pengumuman mobile
+Route::get('/listpengumuman','PengumumanController@listpengumuman');
+Route::get('/pengumumandetail/{id}','PengumumanController@pengumumandetail');

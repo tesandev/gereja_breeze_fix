@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 use App\Models\Bacaan;
 // We will use Form Request to validate incoming requests from our store and update method
@@ -36,17 +38,25 @@ class BacaanController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreRequest $request):RedirectResponse
+    public function store(Request $request):RedirectResponse
     {
-        $validate = $request->validated();
+        $this->validate($request,[
+            'title' => 'required|string|min:3|max:250',
+            'content' => 'required|string|min:3|max:6000',
+            'featured_image' => 'nullable|image|max:2024|mimes:jpg,jpeg,png',
+        ]);
 
         if ($request->hasFile('featured_image')) {
             //taruh image di public storage
             $filePath = Storage::disk('public')->put('images/bacaan/featured-images',request()->file('featured_image'));
-            $validate['featured_image'] = $filePath;
         }
 
-        $create = Bacaan::create($validate);
+        $create = DB::table('bacaan')->insert([
+            'title'=> $request->title,
+            'content'=> $request->content,
+            'featured_image' => $filePath,
+            'created_at' => Carbon::now()
+        ]);
 
         if ($create) {
             session()->flash('notif.success','Bacaan created successfully!');
@@ -79,19 +89,31 @@ class BacaanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRequest $request, string $id):RedirectResponse
+    public function update(Request $request, string $id):RedirectResponse
     {
         $bacaan = Bacaan::findOrFail($id);
-        $validated = $request->validated();
 
+        $this->validate($request,[
+            'title' => 'required|string|min:3|max:250',
+            'content' => 'required|string|min:3|max:6000',
+            //'featured_image' => 'nullable|image|max:2024|mimes:jpg,jpeg,png',
+        ]);
+        
         if($request->hasFile('featured_image')){
             //delete image
-            Storage::disk('Public')->delete($bacaan->featured_image);
-            $filePath = Storage::disk('Public')->put('images/bacaan/featured-images',request()->file('featured_image'),'public');
-            $validated['featured_image'] = $filePath;
+            Storage::disk('public')->delete($bacaan->featured_image);
+            $filePath = Storage::disk('public')->put('images/bacaan/featured-images',request()->file('featured_image'),'public');
+        }else {
+            $filePath = $bacaan->featured_image;
         }
+        
+        $update = DB::table('bacaan')->where('id',$id)->update([
+            'title'=> $request->title,
+            'content'=> $request->content,
+            'featured_image' => $filePath,
+            'updated_at' => Carbon::now()
+        ]);
 
-        $update = $bacaan->update($validated);
         if ($update) {
             session()->flash('notif.success','Baacaan berhasil diupdate');
             return redirect()->route('bacaan.index');
@@ -113,5 +135,18 @@ class BacaanController extends Controller
             return redirect()->route('bacaan.index');
         }
         return abort(500);
+    }
+
+    //API mobile
+    public function listbacaan()
+    {
+        $list = Bacaan::all();
+        return $list;
+    }
+
+    public function bacaandetail($id)
+    {
+        $dta = Bacaan::findOrFail($id);
+        return $dta;
     }
 }
