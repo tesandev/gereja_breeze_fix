@@ -9690,3 +9690,35 @@ Did you mean one of these?
 #53 C:\\xampp\\htdocs\\gereja_breeze_fix\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\xampp\\\\htdocs...')
 #54 {main}
 "} 
+[2023-05-22 03:34:49] local.ERROR: Uncaught BadMethodCallException: Method Illuminate\Database\MySqlConnection::first does not exist. in C:\xampp\htdocs\gereja_breeze_fix\vendor\laravel\framework\src\Illuminate\Macroable\Traits\Macroable.php:113
+Stack trace:
+#0 C:\xampp\htdocs\gereja_breeze_fix\vendor\laravel\framework\src\Illuminate\Database\DatabaseManager.php(469): Illuminate\Database\Connection->__call('first', Array)
+#1 C:\xampp\htdocs\gereja_breeze_fix\vendor\laravel\framework\src\Illuminate\Support\Facades\Facade.php(353): Illuminate\Database\DatabaseManager->__call('first', Array)
+#2 Command line code(1): Illuminate\Support\Facades\Facade::__callStatic('first', Array)
+#3 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught BadMethodCallException: Method Illuminate\\Database\\MySqlConnection::first does not exist. in C:\\xampp\\htdocs\\gereja_breeze_fix\\vendor\\laravel\\framework\\src\\Illuminate\\Macroable\\Traits\\Macroable.php:113
+Stack trace:
+#0 C:\\xampp\\htdocs\\gereja_breeze_fix\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\DatabaseManager.php(469): Illuminate\\Database\\Connection->__call('first', Array)
+#1 C:\\xampp\\htdocs\\gereja_breeze_fix\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(353): Illuminate\\Database\\DatabaseManager->__call('first', Array)
+#2 Command line code(1): Illuminate\\Support\\Facades\\Facade::__callStatic('first', Array)
+#3 {main}
+  thrown at C:\\xampp\\htdocs\\gereja_breeze_fix\\vendor\\laravel\\framework\\src\\Illuminate\\Macroable\\Traits\\Macroable.php:113)
+[stacktrace]
+#0 {main}
+"} 
+[2023-05-22 03:34:55] local.ERROR: Uncaught BadMethodCallException: Method Illuminate\Database\MySqlConnection::first does not exist. in C:\xampp\htdocs\gereja_breeze_fix\vendor\laravel\framework\src\Illuminate\Macroable\Traits\Macroable.php:113
+Stack trace:
+#0 C:\xampp\htdocs\gereja_breeze_fix\vendor\laravel\framework\src\Illuminate\Database\DatabaseManager.php(469): Illuminate\Database\Connection->__call('first', Array)
+#1 C:\xampp\htdocs\gereja_breeze_fix\vendor\laravel\framework\src\Illuminate\Support\Facades\Facade.php(353): Illuminate\Database\DatabaseManager->__call('first', Array)
+#2 Command line code(1): Illuminate\Support\Facades\Facade::__callStatic('first', Array)
+#3 {main}
+  thrown {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): Uncaught BadMethodCallException: Method Illuminate\\Database\\MySqlConnection::first does not exist. in C:\\xampp\\htdocs\\gereja_breeze_fix\\vendor\\laravel\\framework\\src\\Illuminate\\Macroable\\Traits\\Macroable.php:113
+Stack trace:
+#0 C:\\xampp\\htdocs\\gereja_breeze_fix\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\DatabaseManager.php(469): Illuminate\\Database\\Connection->__call('first', Array)
+#1 C:\\xampp\\htdocs\\gereja_breeze_fix\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Facades\\Facade.php(353): Illuminate\\Database\\DatabaseManager->__call('first', Array)
+#2 Command line code(1): Illuminate\\Support\\Facades\\Facade::__callStatic('first', Array)
+#3 {main}
+  thrown at C:\\xampp\\htdocs\\gereja_breeze_fix\\vendor\\laravel\\framework\\src\\Illuminate\\Macroable\\Traits\\Macroable.php:113)
+[stacktrace]
+#0 {main}
+"} 

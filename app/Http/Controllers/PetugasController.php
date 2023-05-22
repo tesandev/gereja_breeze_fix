@@ -132,13 +132,18 @@ class PetugasController extends Controller
     //Api Mobile
     public function listpetugas()
     {
-        $list = Petugas::all();
+        $list = DB::table('petugas')->select('petugas.*','jadwalkegiatan.tanggalkegiatan','jadwalkegiatan.jamkegiatan')
+        ->leftJoin('jadwalkegiatan', 'jadwalkegiatan.id', '=', 'petugas.jadwal_id')
+        ->get();
         return $list;
     }
 
     public function petugasdetail($id)
     {
-        $dta = Petugas::findOrFail($id);
+        $dta = DB::table('petugas')->select('petugas.*','jadwalkegiatan.tanggalkegiatan','jadwalkegiatan.jamkegiatan')
+        ->leftJoin('jadwalkegiatan', 'jadwalkegiatan.id', '=', 'petugas.jadwal_id')
+        ->where('petugas.id',$id)
+        ->first();
         return $dta;
     }
 }

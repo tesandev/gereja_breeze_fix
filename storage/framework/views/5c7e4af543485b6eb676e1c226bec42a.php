@@ -139,6 +139,9 @@
 <?php unset($__componentOriginal71c6471fa76ce19017edc287b6f4508c); ?>
 <?php endif; ?>
                         </div>
+                        <div class="flex items-center gap-4">
+                            <a href="<?php echo e(route('pengumuman.index')); ?>" class="bg-blue-500 text-white px-4 py-2 rounded-md">BACK</a>
+                    </div>
                     </form>
                 </div>
             </div>
