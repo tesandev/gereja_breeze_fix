@@ -74,12 +74,11 @@ class UsermobileController extends Controller
 
     public function userDetail($id)
     {
-        $user = Usermobile::findOrFail($id)->first();
+        $user = DB::table('usersmobile')
+                    ->select('id','name','email')
+                    ->where('id', $id)->first();
         if ($user) {
-            return response()->json([
-                'success' => 1,
-                'message' => $user
-            ]);
+            return $user;
         }else {
             return $this->Error('Data user tidak ditemukan');
         }
@@ -89,27 +88,36 @@ class UsermobileController extends Controller
     {
         if($request->email == ''){
             return $this->Error('Email Kosong');
-        }elseif ($request->password == '') {
-            return $this->Error('Password Kosong');
+        }elseif ($request->passwordnew == '') {
+            return $this->Error('Password Baru Kosong');
+        }elseif ($request->passwordcurrent == '') {
+            return $this->Error('Password Sekarang Kosong');
         }
-        $cek = Usermobile::findOrFail($request->id)->first();
+
+        $cek = DB::table('usersmobile')->where('id', $request->id)->first();
+
         if ($cek) {
-            $usr = DB::table('usersmobile')
+            if (password_verify($request->passwordcurrent,$cek->password)) {
+                $usr = DB::table('usersmobile')
                     ->where('id', $request->id)
                     ->update([
                         'name'=> $request->name,
                         'email'=> $request->email,
-                        'password'=> Hash::make($request->password),
+                        'password'=> Hash::make($request->passwordnew),
                     ]);
-    
-            if($usr){
-                return response()->json([
-                    'success' => 1,
-                    'message' => 'Berhasil update akun'
-                ]);
+
+                    if($usr){
+                        return response()->json([
+                            'success' => 1,
+                            'message' => 'Berhasil update akun'
+                        ]);
+                    }else{
+                        return $this->Error('Gagal update akun');
+                    }
             }else{
-                return $this->Error('Gagal mendaftarkan akun');
+                return $this->Error('Password Sekarang Salah');
             }
+            
         }else {
             return $this->Error('Data tidak ditemukan');
         }
