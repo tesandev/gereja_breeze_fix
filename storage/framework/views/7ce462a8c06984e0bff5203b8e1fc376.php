@@ -36,7 +36,7 @@
                         </h2>
                 
                         <p class="mt-1 text-sm text-gray-600">
-                            <?php echo e($bacaan->content); ?>
+                            <?php echo $bacaan->content; ?>
 
                         </p>
                     </div>
@@ -47,7 +47,7 @@
                         </h2>
                 
                         <p class="mt-1 text-sm text-gray-600">
-                            <img class="h-64 w-128" src="<?php echo e(Storage::url($bacaan->featured_image)); ?>" alt="<?php echo e($bacaan->title); ?>" srcset="">
+                            <img class="h-64 w-128" src="<?php echo e(url($bacaan->featured_image)); ?>" alt="<?php echo e($bacaan->title); ?>" srcset="">
                         </p>
                     </div>
                     <div class="mb-6">

@@ -114,6 +114,10 @@ class UsermobileController extends Controller
                     }else{
                         return $this->Error('Gagal update akun');
                     }
+                // return response()->json([
+                //     'success' => 1,
+                //     'message' => 'Berhasil mendaftarkan akun'
+                // ]);
             }else{
                 return $this->Error('Password Sekarang Salah');
             }

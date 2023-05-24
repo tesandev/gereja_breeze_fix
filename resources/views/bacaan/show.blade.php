@@ -24,7 +24,7 @@
                         </h2>
                 
                         <p class="mt-1 text-sm text-gray-600">
-                            {{ $bacaan->content }}
+                            {!! $bacaan->content !!}
                         </p>
                     </div>
                     <div class="mb-6">
@@ -33,7 +33,7 @@
                         </h2>
                 
                         <p class="mt-1 text-sm text-gray-600">
-                            <img class="h-64 w-128" src="{{ Storage::url($bacaan->featured_image) }}" alt="{{ $bacaan->title }}" srcset="">
+                            <img class="h-64 w-128" src="{{ url($bacaan->featured_image) }}" alt="{{ $bacaan->title }}" srcset="">
                         </p>
                     </div>
                     <div class="mb-6">

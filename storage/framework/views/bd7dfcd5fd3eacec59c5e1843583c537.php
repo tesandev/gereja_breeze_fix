@@ -10,7 +10,7 @@
      <?php $__env->slot('header', null, []); ?> 
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             
-            <?php echo e(isset($bacaan) ? 'Edit' : 'Create'); ?>
+            <?php echo e(isset($bacaan) ? 'Detail Bacaan' : 'Create'); ?>
 
         </h2>
      <?php $__env->endSlot(); ?>
@@ -150,7 +150,7 @@
                                 "/>
                             </label>
                             <div class="shrink-0 my-2">
-                                <img id="featured_image_preview" class="h-64 w-128 object-cover rounded-md" src="<?php echo e(isset($bacaan) ? Storage::url($bacaan->featured_image) : ''); ?>" alt="Featured image preview" />
+                                <img id="featured_image_preview" class="h-64 w-128 object-cover rounded-md" src="<?php echo e(isset($bacaan) ? url($bacaan->featured_image) : ''); ?>" alt="Featured image preview" />
                             </div>
                             <?php if (isset($component)) { $__componentOriginal71c6471fa76ce19017edc287b6f4508c = $component; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.input-error','data' => ['class' => 'mt-2','messages' => $errors->get('featured_image')]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
@@ -193,6 +193,13 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.ckeditor.com/4.21.0/basic/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('content',{
+            height: 150,
+            removeButtons: 'PasteFromWord'
+        });
+    </script>
     <script>
         // create onchange event listener for featured_image input
         document.getElementById('featured_image').onchange = function(evt) {

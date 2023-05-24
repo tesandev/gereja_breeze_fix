@@ -9,6 +9,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 use App\Models\Bacaan;
 // We will use Form Request to validate incoming requests from our store and update method
@@ -48,13 +50,18 @@ class BacaanController extends Controller
 
         if ($request->hasFile('featured_image')) {
             //taruh image di public storage
-            $filePath = Storage::disk('public')->put('images/bacaan/featured-images',request()->file('featured_image'));
+            $photo = $request->file('featured_image');
+            $filename = time().'_'.substr($photo->getClientOriginalName(),-30);
+            $photo->move('images/bacaan/featured-images/',$filename);
+            $path = 'images/bacaan/featured-images/'.$filename;
+        }else{
+            $path = '';
         }
 
         $create = DB::table('bacaan')->insert([
             'title'=> $request->title,
             'content'=> $request->content,
-            'featured_image' => $filePath,
+            'featured_image' => $path,
             'created_at' => Carbon::now()
         ]);
 
@@ -101,8 +108,11 @@ class BacaanController extends Controller
         
         if($request->hasFile('featured_image')){
             //delete image
-            Storage::disk('public')->delete($bacaan->featured_image);
-            $filePath = Storage::disk('public')->put('images/bacaan/featured-images',request()->file('featured_image'),'public');
+            File::delete($bacaan->featured_image);
+            $gambar = $request->file('featured_image');
+            $filename = time().'_'.substr($gambar->getClientOriginalName(),-30);
+            $gambar->move('images/bacaan/featured-images/',$filename);
+            $filePath = 'images/bacaan/featured-images/'.$filename;
         }else {
             $filePath = $bacaan->featured_image;
         }
@@ -128,7 +138,7 @@ class BacaanController extends Controller
     public function destroy(string $id):RedirectResponse
     {
         $bacaan = Bacaan::findOrFail($id);
-        Storage::disk('public')->delete($bacaan->featured_image);
+        File::delete($bacaan->featured_image);
         $delete = $bacaan->delete($id);
         if ($delete) {
             session()->flash('notif.success','Baccan berhasil dihapus');

@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{-- Use 'Edit' for edit mode and create for non-edit/create mode --}}
-            {{ isset($bacaan) ? 'Edit' : 'Create' }}
+            {{ isset($bacaan) ? 'Detail Bacaan' : 'Create' }}
         </h2>
     </x-slot>
 
@@ -44,7 +44,7 @@
                                 "/>
                             </label>
                             <div class="shrink-0 my-2">
-                                <img id="featured_image_preview" class="h-64 w-128 object-cover rounded-md" src="{{ isset($bacaan) ? Storage::url($bacaan->featured_image) : '' }}" alt="Featured image preview" />
+                                <img id="featured_image_preview" class="h-64 w-128 object-cover rounded-md" src="{{ isset($bacaan) ? url($bacaan->featured_image) : '' }}" alt="Featured image preview" />
                             </div>
                             <x-input-error class="mt-2" :messages="$errors->get('featured_image')" />
                         </div>
@@ -60,6 +60,13 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.ckeditor.com/4.21.0/basic/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('content',{
+            height: 150,
+            removeButtons: 'PasteFromWord'
+        });
+    </script>
     <script>
         // create onchange event listener for featured_image input
         document.getElementById('featured_image').onchange = function(evt) {
